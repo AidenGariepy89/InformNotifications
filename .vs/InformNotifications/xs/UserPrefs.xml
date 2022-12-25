@@ -1,4 +1,36 @@
 ﻿<Properties StartupConfiguration="{855AA7EC-44D3-4410-A4A4-C1DFCABB3AD1}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.InformNotifications FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.EBFDAF34-1430-4A66-8FC6-19AE383F8795" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="AppShell.xaml.cs">
+    <Files>
+      <File FileName="Models/Note.cs" />
+      <File FileName="Views/NotePage.xaml.cs" />
+      <File FileName="Views/AllNotesPage.xaml" />
+      <File FileName="Views/AllNotesPage.xaml.cs" Line="36" Column="1" />
+      <File FileName="Models/AllNotes.cs" />
+      <File FileName="AppShell.xaml" Line="24" Column="1" />
+      <File FileName="AppShell.xaml.cs" Line="12" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="InformNotifications" expanded="True">
+            <Node name="InformNotifications" expanded="True">
+              <Node name="Models" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="AllNotesPage.xaml" expanded="True" />
+              </Node>
+              <Node name="AppShell.xaml" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.InformNotifications PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.EBFDAF34-1430-4A66-8FC6-19AE383F8795" />
 </Properties>

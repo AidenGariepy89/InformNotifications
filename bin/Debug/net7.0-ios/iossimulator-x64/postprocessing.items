@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <_PostProcessingItem Include="InformNotifications.app/InformNotifications">
+      <BCSymbolMapName>InformNotifications.bcsymbolmap</BCSymbolMapName>
+      <NoDSymUtil>true</NoDSymUtil>
+      <dSYMSourcePathExists>false</dSYMSourcePathExists>
+      <NoSymbolStrip>true</NoSymbolStrip>
+      <dSYMInfoPlistRelativePath>InformNotifications.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
+      <SymbolFile>/Users/aiden/Projects/InformNotifications/obj/Debug/net7.0-ios/iossimulator-x64/mtouch-symbols.list</SymbolFile>
+      <DSymName>InformNotifications.app.dSYM</DSymName>
+      <SourceProjectPath>/Users/aiden/Projects/InformNotifications</SourceProjectPath>
+    </_PostProcessingItem>
+  </ItemGroup>
+</Project>
