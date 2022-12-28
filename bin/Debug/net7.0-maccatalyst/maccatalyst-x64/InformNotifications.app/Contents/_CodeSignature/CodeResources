@@ -4,6 +4,10 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Resources/.DS_Store</key>
+		<data>
+		u1xkfN2wf/b8rQPjhpPXUFuYUTc=
+		</data>
 		<key>Resources/AboutAssets.txt</key>
 		<data>
 		pcNU0lDArxK2L9RzLvQgOLn2RC8=
@@ -67,14 +71,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			15C+izAu7lu5oIEgS9yXdfKsk62ThgFZF6T9as7JlNc=
+			dkQYL5GalvDu1x3fdUzkHLPR9+vCDcldK9B5nJn+EOs=
 			</data>
 		</dict>
 		<key>MonoBundle/InformNotifications.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			AVGugx0v90ObTDc/GYwi1XiKS9Pll9HMAiii9hLLbNo=
+			UmngdvYHcVxJKcMTD0/XDHMu2T36gtcwZPIdUlxjN+4=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.CSharp.dll</key>

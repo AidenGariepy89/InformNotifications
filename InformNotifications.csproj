@@ -55,18 +55,16 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\icon_notes.png" />
 	  <None Remove="Resources\Images\icon_about.png" />
-	  <None Remove="Delete\" />
 	  <None Remove="Views\" />
 	  <None Remove="Models\" />
+	  <None Remove="Resources\.DS_Store" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\icon_notes.png" />
 	  <BundleResource Include="Resources\Images\icon_about.png" />
+	  <BundleResource Include="Resources\.DS_Store" />
 	</ItemGroup>
 	<ItemGroup>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Delete\MainPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Views\NotePage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
@@ -76,9 +74,14 @@
 	  <MauiXaml Update="Views\AllNotesPage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\TestView.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\RecipientSelectionPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Delete\" />
 	  <Folder Include="Views\" />
 	  <Folder Include="Models\" />
 	</ItemGroup>

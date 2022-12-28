@@ -8,7 +8,7 @@
 
     <TabBar>
 
-        <ShellContent
+        <!--<ShellContent
             Title="Notes"
             ContentTemplate="{DataTemplate views:AllNotesPage}"
             Icon="icon_notes.png" />
@@ -16,7 +16,11 @@
         <ShellContent
             Title="About"
             ContentTemplate="{DataTemplate views:AboutPage}"
-            Icon="icon_about.png" />
+            Icon="icon_about.png" />-->
+
+        <ShellContent
+            Title="Crazy"
+            ContentTemplate="{DataTemplate views:RecipientSelectionPage}"/>
 
     </TabBar>
 
