@@ -1,4 +1,5 @@
 ﻿using InformNotifications.Models;
+using InformNotifications.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
@@ -21,5 +22,11 @@ public partial class MainViewModel : ObservableObject
 	void ClearHistory()
 	{
 		messageHistory.Clear();
+	}
+
+	[RelayCommand]
+	async Task Tap(InformMessage m)
+	{
+		await Shell.Current.GoToAsync($"{nameof(ViewMessagePage)}?Message={m.Message}?Date={m.Date}");
 	}
 }

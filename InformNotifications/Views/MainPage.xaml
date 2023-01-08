@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InformNotifications.MainPage"
+             x:Class="InformNotifications.Views.MainPage"
              xmlns:viewmodel="clr-namespace:InformNotifications.ViewModels"
              xmlns:models="clr-namespace:InformNotifications.Models"
              x:DataType="viewmodel:MainViewModel">
@@ -33,11 +33,16 @@
                 Grid.Row="2"
                 Grid.Column="1"/>
 
-        <CollectionView Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding MessageHistory}">
+        <CollectionView Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding MessageHistory}" SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type models:InformMessage}">
                     <Grid Padding="0, 5">
                         <Frame>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=TapCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
                             <Grid RowDefinitions="*, *">
 
                                 <Label Text="{Binding Date}"

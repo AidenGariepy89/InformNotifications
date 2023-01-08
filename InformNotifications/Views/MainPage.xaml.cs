@@ -1,6 +1,6 @@
 ﻿using InformNotifications.ViewModels;
 
-namespace InformNotifications;
+namespace InformNotifications.Views;
 
 public partial class MainPage : ContentPage
 {

@@ -22,12 +22,6 @@ build_metadata.AdditionalFiles.ManifestResourceName = InformNotifications.AppShe
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[/Users/aiden/dev/Projects/InformNotifications/InformNotifications/MainPage.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = InformNotifications.MainPage.xaml
-build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
-build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
-
 [/Users/aiden/dev/Projects/InformNotifications/InformNotifications/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = InformNotifications.Resources.Styles.Colors.xaml
@@ -39,3 +33,15 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = InformNotifications.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Styles.xaml
+
+[/Users/aiden/dev/Projects/InformNotifications/InformNotifications/Views/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = InformNotifications.Views.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/MainPage.xaml
+
+[/Users/aiden/dev/Projects/InformNotifications/InformNotifications/Views/ViewMessagePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = InformNotifications.Views.ViewMessagePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/ViewMessagePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/ViewMessagePage.xaml

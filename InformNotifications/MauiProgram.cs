@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using InformNotifications.ViewModels;
+using InformNotifications.Views;
 
 namespace InformNotifications;
 
@@ -23,6 +24,9 @@ public static class MauiProgram
 		builder.Services.AddSingleton<MainPage>();
 		builder.Services.AddSingleton<MainViewModel>();
 
-		return builder.Build();
+		builder.Services.AddTransient<ViewMessagePage>();
+		builder.Services.AddTransient<ViewMessageViewModel>();
+
+        return builder.Build();
 	}
 }

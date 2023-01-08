@@ -6,14 +6,10 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.InformNotifications PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.EBFDAF34-1430-4A66-8FC6-19AE383F8795" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="InformNotifications/MainPage.xaml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="InformNotifications/ViewModels/MainViewModel.cs">
     <Files>
-      <File FileName="InformNotifications/MainPage.xaml.cs" Line="14" Column="1" />
-      <File FileName="InformNotifications/MainPage.xaml" Line="57" Column="1" />
-      <File FileName="InformNotifications/Platforms/iOS/Program.cs" Line="13" Column="1" />
-      <File FileName="InformNotifications/ViewModels/MainViewModel.cs" Line="26" Column="1" />
-      <File FileName="InformNotifications/Models/InformMessage.cs" Line="20" Column="1" />
-      <File FileName="InformNotifications/MauiProgram.cs" Line="29" Column="1" />
+      <File FileName="InformNotifications/AppShell.xaml" Line="17" Column="1" />
+      <File FileName="InformNotifications/ViewModels/MainViewModel.cs" Line="33" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -22,8 +18,6 @@
             <Node name="InformNotifications" expanded="True">
               <Node name="Models" expanded="True" />
               <Node name="ViewModels" expanded="True" />
-              <Node name="MainPage.xaml" expanded="True" />
-              <Node name="MauiProgram.cs" selected="True" />
             </Node>
           </Node>
         </State>
