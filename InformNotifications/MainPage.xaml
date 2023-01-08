@@ -1,42 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InformNotifications.MainPage">
+             x:Class="InformNotifications.MainPage"
+             xmlns:viewmodel="clr-namespace:InformNotifications.ViewModels"
+             xmlns:models="clr-namespace:InformNotifications.Models"
+             x:DataType="viewmodel:MainViewModel">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <Grid RowDefinitions="auto, auto, auto, *"
+          RowSpacing="10"
+          ColumnDefinitions=".60*, .30*"
+          ColumnSpacing="10"
+          Padding="10">
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+        <Label Text="Inform Notifications"
+               HorizontalTextAlignment="Center"
+               Margin="10"
+               FontSize="28"
+               FontAttributes="Bold"
+               Grid.ColumnSpan="2"/>
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+        <Button Text="+ New Message"
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                Margin="20"/>
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+        <Label Text="History"
+               HorizontalTextAlignment="Center"
+               FontSize="Title"
+               Grid.Row="2"/>
+        <Button Text="Clear History"
+                Command="{Binding ClearHistoryCommand}"
+                Grid.Row="2"
+                Grid.Column="1"/>
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+        <CollectionView Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding MessageHistory}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type models:InformMessage}">
+                    <Grid Padding="0, 5">
+                        <Frame>
+                            <Grid RowDefinitions="*, *">
 
-        </VerticalStackLayout>
-    </ScrollView>
+                                <Label Text="{Binding Date}"
+                                       FontSize="Large"
+                                       />
+                                <Label Text="{Binding Message}" Grid.Row="1"/>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
 
 </ContentPage>
-

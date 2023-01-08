@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "jU+4174xJ2cD9FmuCx+Wmwp//x5E9D3jVZkk4j0w+tYde+MI4x4dhJF6DD9TNbhNani4nbRHkCtBUCbVaQH+ZQ==",
+  "dgSpecHash": "EeVln5Bn+MfdKDdPLnmf2cD5c6vAKCzBD0E6iFXCeel5xdGq4wn/8NKc9YWoN+/o/Pczxy6C+ksug7Ltz4SSTA==",
   "success": true,
   "projectFilePath": "/Users/aiden/dev/Projects/InformNotifications/InformNotifications/InformNotifications.csproj",
   "expectedPackageFiles": [
+    "/Users/aiden/.nuget/packages/communitytoolkit.mvvm/8.0.0/communitytoolkit.mvvm.8.0.0.nupkg.sha512",
     "/Users/aiden/.nuget/packages/googlegson/2.9.1.1/googlegson.2.9.1.1.nupkg.sha512",
     "/Users/aiden/.nuget/packages/microsoft.extensions.configuration/7.0.0/microsoft.extensions.configuration.7.0.0.nupkg.sha512",
     "/Users/aiden/.nuget/packages/microsoft.extensions.configuration.abstractions/7.0.0/microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",

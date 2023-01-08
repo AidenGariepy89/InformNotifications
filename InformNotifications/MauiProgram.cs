@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using InformNotifications.ViewModels;
 
 namespace InformNotifications;
 
@@ -19,7 +20,9 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
+		builder.Services.AddSingleton<MainPage>();
+		builder.Services.AddSingleton<MainViewModel>();
+
 		return builder.Build();
 	}
 }
-
