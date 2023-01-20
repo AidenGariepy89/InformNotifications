@@ -10,29 +10,57 @@
     <p class="lead">Home Page</p>
 </div>
 
-<div class="mt-4 row">
-    <div class="col-6"><h2>Message History</h2></div>
-    <div class="col-6 justify-content-end"><button class="text-right btn btn-outline-danger">Clear History</button></div>
+<div class="d-flex justify-content-center mt-5 mb-5">
+    <button class="btn btn-lg btn-primary">Create New Message +</button>
 </div>
 
-@foreach (var message in messages)
-{
-    <div class="text-center pt-4">
-        <label class="alert alert-primary">
-            <a href="/testing" class="text-decoration-none">
-                <h3>@(message.SentMessageId): @(message.TimeDelivered.ToLongDateString())</h3>
-                <p>Content: @message.Contents</p>
-            </a>
-        </label>
+<div class="card pb-4 pt-2">
+
+    <div class="mt-4 row">
+        <div class="col-6 text-end"><h2>Message History</h2></div>
+        <div class="col-6 justify-content-end"><button class="text-right btn btn-outline-danger">Clear History</button></div>
     </div>
-}
+
+    @if (invalidRequest)
+    {
+        <div class="text-center text-danger mt-4">
+            Error loading sent messages!
+        </div>
+    }
+    else if (messages.Count == 0)
+    {
+        <div class="text-center lead mt-4">
+            No Messages have been sent yet!
+        </div>
+    }
+    else
+    {
+        @foreach (var message in messages)
+        {
+            <div class="text-center pt-4">
+                <label class="alert alert-primary">
+                    <a href="/testing" class="text-decoration-none">
+                        <h3>@(message.SentMessageId): @(message.TimeDelivered.ToLongDateString())</h3>
+                        <p>Content: @message.Contents</p>
+                    </a>
+                </label>
+            </div>
+        }
+    }
+
+</div>
 
 @code
 {
-    private List<SentMessage> messages = new();
+    List<SentMessage>? messages = new();
+    bool invalidRequest = false;
     
     protected override async Task OnInitializedAsync()
     {
         messages = await HttpClient.GetFromJsonAsync<List<SentMessage>>(NavigationManager.BaseUri + "sentmessages");
+        if (messages is null)
+        {
+            invalidRequest = true;
+        }
     }
 }

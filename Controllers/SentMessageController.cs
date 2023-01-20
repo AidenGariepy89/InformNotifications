@@ -19,6 +19,6 @@ public class SentMessageController : Controller
     [HttpGet]
     public async Task<ActionResult<List<SentMessage>>> GetSentMessages()
     {
-        return (await _db.Messages.ToListAsync()).OrderByDescending(s => s.SentMessageId).ToList();
+        return (await _db.Messages.ToListAsync()).OrderByDescending(s => s.TimeDelivered).ToList();
     }
 }
