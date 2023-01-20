@@ -3,11 +3,13 @@
 @inject NavigationManager NavigationManager
 @using InformNotifications.Models
 
-@if (!invalidMessage)
+<p>@(invalidMessage ? "invalid" : "its fine....")</p>
+
+@* @if (!invalidMessage)
 {
     <h1>@sentMessage.SentMessageId</h1>
     <p>@sentMessage.Contents</p>
-}
+} *@
 
 <a href="/" class="text-decoration-none btn btn-primary">Back</a>
 

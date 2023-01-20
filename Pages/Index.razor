@@ -39,7 +39,7 @@
         {
             <div class="text-center pt-4">
                 <label class="alert alert-primary">
-                    <a href="/mymessages/@(message.SentMessageId)" class="text-decoration-none">
+                    <a @onclick="m => ViewMessageDetails(message.SentMessageId)" class="text-decoration-none">
                         <h3>@(message.SentMessageId): @(message.TimeDelivered.ToLongDateString())</h3>
                         <p>Content: @message.Contents</p>
                     </a>
@@ -62,5 +62,10 @@
         {
             invalidRequest = true;
         }
+    }
+
+    void ViewMessageDetails(int messageId)
+    {
+        NavigationManager.NavigateTo($"mymessages/{messageId}");
     }
 }
