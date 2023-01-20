@@ -7,7 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+
+builder.Services.AddHttpClient();
+builder.Services.AddSqlite<InformNotificationsContext>("Data Source=notifications.db");
 
 var app = builder.Build();
 
@@ -27,5 +29,16 @@ app.UseRouting();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+app.MapControllerRoute("default", "{controllerHome}/{action=Index}/{id?}");
+
+var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+using (var scope = scopeFactory.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<InformNotificationsContext>();
+    if (db.Database.EnsureCreated())
+    {
+        SeedData.Initialize(db);
+    }
+}
 
 app.Run();

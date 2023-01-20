@@ -1,5 +1,7 @@
 ﻿@page "/"
 @using InformNotifications.Models;
+@inject HttpClient HttpClient;
+@inject NavigationManager NavigationManager
 
 <PageTitle>Inform Notifications</PageTitle>
 
@@ -18,7 +20,7 @@
     <div class="text-center pt-4">
         <label class="alert alert-primary">
             <a href="/testing" class="text-decoration-none">
-                <h3>@(message.MessageId): @(message.TimeDelivered.ToLongDateString())</h3>
+                <h3>@(message.SentMessageId): @(message.TimeDelivered.ToLongDateString())</h3>
                 <p>Content: @message.Contents</p>
             </a>
         </label>
@@ -29,67 +31,8 @@
 {
     private List<SentMessage> messages = new();
     
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        var aiden = new Recipient()
-        {
-            Student = new Student()
-            {
-                FirstName = "Aiden",
-                LastName = "Gariepy",
-                GraduationYear = "2023"
-            },
-            Parents = new List<Parent>(),
-            SendToParents = false
-        };
-        var jack = new Recipient()
-        {
-            Student = new Student()
-            {
-                FirstName = "Jack",
-                LastName = "Boggess",
-                GraduationYear = "2026"
-            },
-            Parents = new List<Parent>(),
-            SendToParents = false
-        };
-        var deion = new Recipient()
-        {
-            Student = new Student()
-            {
-                FirstName = "Deion",
-                LastName = "Hareg",
-                GraduationYear = "2021"
-            },
-            Parents = new List<Parent>(),
-            SendToParents = false
-        };
-        var message1 = new SentMessage()
-        {
-            MessageId = 0,
-            TimeDelivered = DateTime.Now,
-            Recipients = new List<Recipient>()
-                {
-                    aiden,
-                    jack,
-                    deion
-                },
-            Contents = "This is a message about a time that I died. Farewell."
-        };
-        var message2 = new SentMessage()
-        {
-            MessageId = 1,
-            TimeDelivered = DateTime.Now,
-            Recipients = new List<Recipient>()
-                {
-                    aiden,
-                    jack,
-                    deion
-                },
-            Contents = "Now you will perish. Farewell."
-        };
-
-        messages.Add(message1);
-        messages.Add(message2);
+        messages = await HttpClient.GetFromJsonAsync<List<SentMessage>>(NavigationManager.BaseUri + "sentmessages");
     }
 }
