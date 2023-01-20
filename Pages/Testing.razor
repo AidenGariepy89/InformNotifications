@@ -1,0 +1,129 @@
+@page "/testing"
+@using InformNotifications.Models;
+
+<PageTitle>Inform Notifications</PageTitle>
+
+<div class="text-center mt-4">
+    <h1>Inform Notifications</h1>
+    <p class="lead">Welcome to your new app</p>
+</div>
+
+<div class="row mb-4 text-center">
+    <div class="col-4 themed-grid-col">Test</div>
+    <div class="col-4 themed-grid-col">Test</div>
+    <div class="col-4 themed-grid-col">Test</div>
+</div>
+<div class="row row-cols-md-3 mb-3 text-center">
+    <div class="col themed-grid-col">Test</div>
+    <div class="col themed-grid-col">Test</div>
+    <div class="col themed-grid-col">Test</div>
+</div>
+<div class="row mb-3 text-center">
+    <div class="col-md-3 themed-grid-col">Test</div>
+    <div class="col-md-6 themed-grid-col">Test</div>
+    <div class="col-md-3 themed-grid-col">Test</div>
+</div>
+
+<div class="checkbox mt-4">
+    <label>
+        <input type="checkbox" value="remember-me"> Remember Me
+    </label>
+</div>
+
+<button class="btn btn-outline-danger">Testing</button>
+<button class="btn btn-primary">Testing</button>
+
+<div class="alert alert-success mt-4">
+    <div class="alert-heading">
+        Frick you dumb person
+    </div>
+</div>
+
+@foreach (var message in messages)
+{
+    <div class="text-center pt-4">
+        <h3>@(message.MessageId): @(message.TimeDelivered.ToLongDateString())</h3>
+        <p>Content: @message.Contents</p>
+        @foreach (var recipient in message.Recipients)
+        {
+            <div class="pt-3">
+                <h4>@recipient.Student.FullName</h4>
+                <p>Will graduate in @recipient.Student.GraduationYear</p>
+                <p>Send to parents? @(recipient.SendToParents ? "Yes" : "No")</p>
+            </div>
+        }
+    </div>
+}
+
+<a href="#" class="btn btn-success">Back to top</a>
+
+<p class="mt-5 mb-3 text-muted">&copy; Copyright stuff @(DateTime.UtcNow.Year)</p>
+
+@code
+{
+    private List<SentMessage> messages = new();
+    
+    protected override void OnInitialized()
+    {
+        var aiden = new Recipient()
+        {
+            Student = new Student()
+            {
+                FirstName = "Aiden",
+                LastName = "Gariepy",
+                GraduationYear = "2023"
+            },
+            Parents = new List<Parent>(),
+            SendToParents = false
+        };
+        var jack = new Recipient()
+        {
+            Student = new Student()
+            {
+                FirstName = "Jack",
+                LastName = "Boggess",
+                GraduationYear = "2026"
+            },
+            Parents = new List<Parent>(),
+            SendToParents = false
+        };
+        var deion = new Recipient()
+        {
+            Student = new Student()
+            {
+                FirstName = "Deion",
+                LastName = "Hareg",
+                GraduationYear = "2021"
+            },
+            Parents = new List<Parent>(),
+            SendToParents = false
+        };
+        var message1 = new SentMessage()
+        {
+            MessageId = 0,
+            TimeDelivered = DateTime.Now,
+            Recipients = new List<Recipient>()
+                {
+                    aiden,
+                    jack,
+                    deion
+                },
+            Contents = "This is a message about a time that I died. Farewell."
+        };
+        var message2 = new SentMessage()
+        {
+            MessageId = 1,
+            TimeDelivered = DateTime.Now,
+            Recipients = new List<Recipient>()
+                {
+                    aiden,
+                    jack,
+                    deion
+                },
+            Contents = "Now you will perish. Farewell."
+        };
+
+        messages.Add(message1);
+        messages.Add(message2);
+    }
+}

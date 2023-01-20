@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UlUClImU1umsu7SPgViKad6sT5eTNwqAQsyJpxwRFultyyMstsWQm0JLnyb/K6MjXmSgDo96Am76T5jTTznyxg==",
+  "dgSpecHash": "izXIY7531aigVNtLppii66njgW9isyZJ0XXVDu84mX3W+LH/m+fVxJJyh2eiCq6T4Yp62YyoJJzjzhI1J37j2A==",
   "success": true,
-  "projectFilePath": "/Users/aiden/dev/Blazor/InformNotifications/InformNotifications.csproj",
+  "projectFilePath": "/workspaces/InformNotifications/InformNotifications.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
