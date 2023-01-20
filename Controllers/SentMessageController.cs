@@ -21,4 +21,19 @@ public class SentMessageController : Controller
     {
         return (await _db.Messages.ToListAsync()).OrderByDescending(s => s.TimeDelivered).ToList();
     }
+
+    [HttpGet("{messageId}")]
+    public async Task<ActionResult<SentMessage>> GetSentMessage(int messageId)
+    {
+        var message = await _db.Messages
+            .Where(m => m.SentMessageId == messageId)
+            .SingleOrDefaultAsync();
+        
+        if (message == null)
+        {
+            return NotFound();
+        }
+
+        return message;
+    }
 }
