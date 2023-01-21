@@ -11,7 +11,7 @@
 </div>
 
 <div class="d-flex justify-content-center mt-5 mb-5">
-    <button class="btn btn-lg btn-primary">Create New Message +</button>
+    <button class="btn btn-lg btn-primary" @onclick="NewMessage">Create New Message +</button>
 </div>
 
 <div class="card pb-4 pt-2">
@@ -63,9 +63,12 @@
             invalidRequest = true;
         }
     }
-
     void ViewMessageDetails(int messageId)
     {
         NavigationManager.NavigateTo($"mymessages/{messageId}");
+    }
+    void NewMessage()
+    {
+        NavigationManager.NavigateTo("newmessage");
     }
 }

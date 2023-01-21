@@ -1,0 +1,47 @@
+@page "/newmessage"
+@inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Components.Forms
+
+<div class="text-center">
+    <h1>Create New Message</h1>
+</div>
+
+<div class="content">
+    <h3>Message Content:</h3>
+    <div class="row"><InputTextArea @bind-Value="messageContent" rows="10"></InputTextArea></div>
+</div>
+
+<div class="mt-2 row">
+    <button class="btn btn-outline-primary col-6" @onclick="CancelMessage">Cancel</button>
+    <button class="btn btn-success col-6" @onclick="SubmitContent">Send</button>
+</div>
+
+@if (messageSent)
+{
+    <div class="mt-4 row">
+        <InputTextArea @bind-Value="messageContent" rows="10"></InputTextArea>
+    </div>
+}
+
+@code
+{
+    string messageContent = string.Empty;
+    List<string> splitMessage = new List<string>();
+    bool messageSent = false;
+    void CancelMessage()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+    void SubmitContent()
+    {
+        if (string.IsNullOrWhiteSpace(messageContent)) return;
+        splitMessage.Clear();
+        string[] split = messageContent.Split('\n');
+        foreach (var section in split)
+        {
+            splitMessage.Add(section);
+        }
+        messageSent = true;
+    }
+}
