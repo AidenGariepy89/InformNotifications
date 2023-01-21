@@ -3,13 +3,23 @@
 @inject NavigationManager NavigationManager
 @using InformNotifications.Models
 
-<p>@(invalidMessage ? "invalid" : "its fine....")</p>
-
-@* @if (!invalidMessage)
+@if (dataRecieved)
 {
-    <h1>@sentMessage.SentMessageId</h1>
-    <p>@sentMessage.Contents</p>
-} *@
+    <div class="text-center">
+        <h1>@sentMessage.TimeDelivered</h1>
+        <div class="mt-4 lead">
+            @sentMessage.Contents
+        </div>
+    </div>
+}
+else if (dataFailed)
+{
+    <div class="text-center lead">Sorry, there is no message at this index</div>
+}
+else
+{
+    <div class="text-center lead">Loading...</div>
+}
 
 <a href="/" class="text-decoration-none btn btn-primary">Back</a>
 
@@ -18,19 +28,20 @@
     [Parameter]
     public int MessageId { get; set; }
     SentMessage? sentMessage;
-    bool invalidMessage = false;
+    bool dataRecieved = false;
+    bool dataFailed = false;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            sentMessage = await HttpClient.GetFromJsonAsync<SentMessage>(
-                $"{NavigationManager.BaseUri}sentmessages/{MessageId}");
+            sentMessage = await HttpClient.GetFromJsonAsync<SentMessage>($"{NavigationManager.BaseUri}sentmessages/{MessageId}");
+            dataRecieved = true;
         }
         catch (Exception ex)
         {
-            invalidMessage = true;
             Console.Error.WriteLine(ex);
+            dataFailed = true;
         }
     }
 }
