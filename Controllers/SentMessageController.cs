@@ -36,4 +36,16 @@ public class SentMessageController : Controller
 
         return message;
     }
+
+    [HttpPost]
+    public async Task<ActionResult<int>> AddSentMessage(SentMessage message)
+    {
+        message.TimeDelivered = DateTime.Now;
+        message.SentMessageId = _db.Messages.Count() + 1;
+
+        _db.Messages.Add(message);
+        await _db.SaveChangesAsync();
+
+        return message.SentMessageId;
+    }
 }

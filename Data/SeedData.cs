@@ -23,7 +23,7 @@ public static class SeedData
             new SentMessage()
             {
                 SentMessageId = 3,
-                TimeDelivered = new DateTime(2023, 8, 9),
+                TimeDelivered = new DateTime(2022, 8, 9),
                 Contents = "This is a message from your favorite thing in the whole wide world. Farewell."
             }
         };

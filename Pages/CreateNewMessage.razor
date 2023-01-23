@@ -2,6 +2,7 @@
 @inject HttpClient HttpClient
 @inject NavigationManager NavigationManager
 @using Microsoft.AspNetCore.Components.Forms
+@using InformNotifications.Models
 
 <div class="text-center">
     <h1>Create New Message</h1>
@@ -27,21 +28,18 @@
 @code
 {
     string messageContent = string.Empty;
-    List<string> splitMessage = new List<string>();
     bool messageSent = false;
     void CancelMessage()
     {
         NavigationManager.NavigateTo("/");
     }
-    void SubmitContent()
+    async Task SubmitContent()
     {
         if (string.IsNullOrWhiteSpace(messageContent)) return;
-        splitMessage.Clear();
-        string[] split = messageContent.Split('\n');
-        foreach (var section in split)
-        {
-            splitMessage.Add(section);
-        }
         messageSent = true;
+
+        await HttpClient.PostAsJsonAsync(NavigationManager.BaseUri + "sentmessages", new SentMessage() { Contents = messageContent });
+        
+        NavigationManager.NavigateTo("/");
     }
 }
