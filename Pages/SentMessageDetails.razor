@@ -7,8 +7,12 @@
 {
     <div class="text-center">
         <h1>@sentMessage!.TimeDelivered</h1>
-        <div class="mt-4 lead">
-            @sentMessage.Contents
+        <div class="mt-4 mb-4 lead text-start container">
+            @* @sentMessage.Contents *@
+            @foreach (var section in messageSeperated)
+            {
+                <div>@(section)</div>
+            }
         </div>
     </div>
 }
@@ -31,6 +35,7 @@ else
     [Parameter]
     public int MessageId { get; set; }
     SentMessage? sentMessage;
+    List<string> messageSeperated = new();
     bool dataRecieved = false;
     bool dataFailed = false;
 
@@ -40,6 +45,8 @@ else
         {
             sentMessage = await HttpClient.GetFromJsonAsync<SentMessage>($"{NavigationManager.BaseUri}sentmessages/{MessageId}");
             dataRecieved = true;
+
+            messageSeperated = sentMessage!.Contents.Split('\n').ToList();
         }
         catch (Exception ex)
         {
