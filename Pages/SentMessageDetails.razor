@@ -6,7 +6,7 @@
 @if (dataRecieved)
 {
     <div class="text-center">
-        <h1>@sentMessage.TimeDelivered</h1>
+        <h1>@sentMessage!.TimeDelivered</h1>
         <div class="mt-4 lead">
             @sentMessage.Contents
         </div>
@@ -21,7 +21,10 @@ else
     <div class="text-center lead">Loading...</div>
 }
 
-<a href="/" class="text-decoration-none btn btn-outline-primary">Back</a>
+<div class="">
+    <a href="/" class="text-decoration-none btn btn-outline-primary">Back</a>
+    <button @onclick="DeleteMessage" class="btn btn-outline-danger float-end">Delete Message</button>
+</div>
 
 @code
 {
@@ -43,5 +46,12 @@ else
             Console.Error.WriteLine(ex);
             dataFailed = true;
         }
+    }
+
+    void DeleteMessage()
+    {
+        dataRecieved = false;
+        HttpClient.DeleteFromJsonAsync<SentMessage>($"{NavigationManager.BaseUri}sentmessages/{MessageId}");
+        NavigationManager.NavigateTo("/");
     }
 }
