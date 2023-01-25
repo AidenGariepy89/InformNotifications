@@ -6,9 +6,13 @@
 @if (dataRecieved)
 {
     <div class="text-center">
-        <h1>@sentMessage.TimeDelivered</h1>
-        <div class="mt-4 lead">
-            @sentMessage.Contents
+        <h1>@sentMessage!.TimeDelivered</h1>
+        <div class="mt-4 mb-4 lead text-start container">
+            @* @sentMessage.Contents *@
+            @foreach (var section in messageSeperated)
+            {
+                <div>@(section)</div>
+            }
         </div>
     </div>
 }
@@ -21,13 +25,17 @@ else
     <div class="text-center lead">Loading...</div>
 }
 
-<a href="/" class="text-decoration-none btn btn-outline-primary">Back</a>
+<div class="">
+    <a href="/" class="text-decoration-none btn btn-outline-primary">Back</a>
+    <button @onclick="DeleteMessage" class="btn btn-outline-danger float-end">Delete Message</button>
+</div>
 
 @code
 {
     [Parameter]
     public int MessageId { get; set; }
     SentMessage? sentMessage;
+    List<string> messageSeperated = new();
     bool dataRecieved = false;
     bool dataFailed = false;
 
@@ -37,11 +45,20 @@ else
         {
             sentMessage = await HttpClient.GetFromJsonAsync<SentMessage>($"{NavigationManager.BaseUri}sentmessages/{MessageId}");
             dataRecieved = true;
+
+            messageSeperated = sentMessage!.Contents.Split('\n').ToList();
         }
         catch (Exception ex)
         {
             Console.Error.WriteLine(ex);
             dataFailed = true;
         }
+    }
+
+    void DeleteMessage()
+    {
+        dataRecieved = false;
+        HttpClient.DeleteFromJsonAsync<SentMessage>($"{NavigationManager.BaseUri}sentmessages/{MessageId}");
+        NavigationManager.NavigateTo("/");
     }
 }

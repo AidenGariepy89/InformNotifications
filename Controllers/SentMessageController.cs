@@ -37,6 +37,22 @@ public class SentMessageController : Controller
         return message;
     }
 
+    [HttpDelete("{messageId}")]
+    public async Task<ActionResult<int>> DeleteSentMessage(int messageId)
+    {
+        var message = await _db.Messages
+            .Where(m => m.SentMessageId == messageId)
+            .SingleOrDefaultAsync();
+        if (message is null)
+        {
+            return -1;
+        }
+        _db.Remove(message!);
+        await _db.SaveChangesAsync();
+
+        return message.SentMessageId;
+    }
+
     [HttpPost]
     public async Task<ActionResult<int>> AddSentMessage(SentMessage message)
     {
