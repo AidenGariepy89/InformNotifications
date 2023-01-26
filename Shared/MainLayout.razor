@@ -2,8 +2,30 @@
 
 <PageTitle>InformNotifications</PageTitle>
 
-<div class="container">
-    @Body
+<div class="page">
+    @* Maybe sidebar? *@
+
+    <main>
+        <div class="container">
+            <header class="d-flex justify-content-center py-3">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><NavLink href="/" class="nav-link">Home</NavLink></li>
+                    <li class="nav-item"><NavLink href="/testing" class="nav-link">Features</NavLink></li>
+                    <li class="nav-item"><NavLink href="/testing" class="nav-link">Pricing</NavLink></li>
+                    <li class="nav-item"><NavLink href="/testing" class="nav-link">FAQs</NavLink></li>
+                    <li class="nav-item"><NavLink href="/testing" class="nav-link">About</NavLink></li>
+                </ul>
+            </header>
+        </div>
+
+        <article class="content">
+            @Body
+        </article>
+
+        @* <footer>
+            <p class="mt-5 mb-3 text-muted text-center">&copy; Copyright stuff @(DateTime.UtcNow.Year)</p>
+        </footer> *@
+    </main>
 </div>
 
 @* <div class="page">

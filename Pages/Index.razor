@@ -1,43 +1,75 @@
 ﻿@page "/"
+@using InformNotifications.Models;
+@inject HttpClient HttpClient;
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
 
 <PageTitle>Inform Notifications</PageTitle>
 
-<div class="text-center mt-4">
+<div class="text-center">
     <h1>Inform Notifications</h1>
-    <p class="lead">Welcome to your new app</p>
+    <p class="lead">Home Page</p>
 </div>
 
-<div class="row mb-4 text-center">
-    <div class="col-4 themed-grid-col">Test</div>
-    <div class="col-4 themed-grid-col">Test</div>
-    <div class="col-4 themed-grid-col">Test</div>
-</div>
-<div class="row row-cols-md-3 mb-3 text-center">
-    <div class="col themed-grid-col">Test</div>
-    <div class="col themed-grid-col">Test</div>
-    <div class="col themed-grid-col">Test</div>
-</div>
-<div class="row mb-3 text-center">
-    <div class="col-md-3 themed-grid-col">Test</div>
-    <div class="col-md-6 themed-grid-col">Test</div>
-    <div class="col-md-3 themed-grid-col">Test</div>
+<div class="d-flex justify-content-center mt-5 mb-5">
+    <button class="btn btn-lg btn-primary" @onclick="NewMessage">Create New Message +</button>
 </div>
 
-<div class="checkbox mt-4">
-    <label>
-        <input type="checkbox" value="remember-me"> Remember Me
-    </label>
-</div>
+<div class="card pb-4 pt-2 mb-4">
 
-<button class="btn btn-outline-danger">Testing</button>
-<button class="btn btn-primary">Testing</button>
-
-<a href="#" class="btn btn-success">Back to top</a>
-
-<div class="alert alert-success mt-4">
-    <div class="alert-heading">
-        Frick you
+    <div class="mt-4 row">
+        <div class="col-6 text-end"><h2>Message History</h2></div>
+        <div class="col-6 justify-content-end"><button class="text-right btn btn-outline-danger">Clear History</button></div>
     </div>
+
+    @if (invalidRequest)
+    {
+        <div class="text-center text-danger mt-4">
+            Error loading sent messages!
+        </div>
+    }
+    else if (messages!.Count == 0)
+    {
+        <div class="text-center lead mt-4">
+            No Messages have been sent yet!
+        </div>
+    }
+    else
+    {
+        @foreach (var message in messages)
+        {
+            <div class="text-center pt-4">
+                <label class="alert alert-primary">
+                    <a @onclick="m => ViewMessageDetails(message.SentMessageId)" class="text-decoration-none">
+                        <h3>@(message.SentMessageId): @(message.TimeDelivered.ToLongDateString())</h3>
+                        <p>Content: @message.Contents</p>
+                    </a>
+                </label>
+            </div>
+        }
+    }
+
 </div>
 
-<p class="mt-5 mb-3 text-muted">&copy; Copyright stuff @(DateTime.UtcNow.Year)</p>
+@code
+{
+    List<SentMessage>? messages = new();
+    bool invalidRequest = false;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        messages = await HttpClient.GetFromJsonAsync<List<SentMessage>>(NavigationManager.BaseUri + "sentmessages");
+        if (messages is null)
+        {
+            invalidRequest = true;
+        }
+    }
+    void ViewMessageDetails(int messageId)
+    {
+        NavigationManager.NavigateTo($"mymessages/{messageId}");
+    }
+    void NewMessage()
+    {
+        NavigationManager.NavigateTo("newmessage");
+    }
+}
