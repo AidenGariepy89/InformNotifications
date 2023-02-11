@@ -1,0 +1,44 @@
+@page "/viewstudents"
+@using InformNotifications.Models;
+@inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
+
+<h1>Students</h1>
+
+@if (invalidRequest)
+{
+    <div class="text-center text-danger mt-4">
+        Error loading students!
+    </div>
+}
+else if (students!.Count == 0)
+{
+    <div class="text-center lead mt-4">
+        No Students have been added yet.
+    </div>
+}
+else
+{
+    @foreach (var student in students)
+    {
+        <div class="row">
+            <p>Name: @(student.FullName), Id: @(student.StudentId), Graduation Year: @(student.GraduationYear), Email: @(student.EmailAddress), Phone: @(student.PhoneNumber)</p>
+        </div>
+    }
+}
+
+@code
+{
+    List<Student>? students = new();
+    bool invalidRequest = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        students = await HttpClient.GetFromJsonAsync<List<Student>>(NavigationManager.BaseUri + "students");
+        if (students is not null)
+        {
+            invalidRequest = false;
+            students = students.OrderBy(s => s.LastName).ToList();
+        }
+    }
+}
