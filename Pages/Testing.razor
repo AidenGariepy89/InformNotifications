@@ -41,9 +41,35 @@
 
 <button class="btn @(btnToggled ? "btn-primary" : "btn-outline-primary")" @onclick="Toggle">Toggle</button>
 
+<select name="test" id="test1">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+</select>
+
+<Virtualize Context="thing" Items="@testing">
+    <div>
+        <input type="checkbox" name="f" id="f">
+        @thing
+    </div>
+</Virtualize>
+
 @code
 {
     bool btnToggled = false;
+    List<string> testing = new();
+
+    protected override void OnInitialized()
+    {
+        testing.Add("asdf");
+        testing.Add("vxcvb");
+        testing.Add("wgfsdfg");
+        testing.Add("esgadfnsdfg");
+        testing.Add("asdfaebadf");
+        testing.Add("oiut");
+        testing.Add("bwtjfdh");
+    }
+
     void Toggle()
     {
         btnToggled = !btnToggled;
