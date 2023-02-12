@@ -38,3 +38,14 @@
         Frick you dumb person
     </div>
 </div>
+
+<button class="btn @(btnToggled ? "btn-primary" : "btn-outline-primary")" @onclick="Toggle">Toggle</button>
+
+@code
+{
+    bool btnToggled = false;
+    void Toggle()
+    {
+        btnToggled = !btnToggled;
+    }
+}
