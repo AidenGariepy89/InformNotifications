@@ -26,9 +26,9 @@
     <h3>Recipients:</h3>
     <input type="search" class="form-control" placeholder="Search..." aria-label="Search" @bind-value="searchQuery" @bind-value:event="oninput">
     <div class="row justify-content-start mt-4">
-        <button class="col btn btn-sm btn-outline-primary">Only Student</button>
-        <button class="col btn btn-sm btn-outline-primary">Only Parents</button>
-        <button class="col btn btn-sm btn-outline-primary">Students and Parents</button>
+        <button class="col btn btn-sm @(relationSettings == Relation.OnlyStudent ? "btn-primary" : "btn-outline-primary")" @onclick="() => relationSettings = Relation.OnlyStudent">Only Student</button>
+        <button class="col btn btn-sm @(relationSettings == Relation.OnlyParents ? "btn-primary" : "btn-outline-primary")" @onclick="() => relationSettings = Relation.OnlyParents">Only Parents</button>
+        <button class="col btn btn-sm @(relationSettings == Relation.Both ? "btn-primary" : "btn-outline-primary")" @onclick="() => relationSettings = Relation.Both">Students and Parents</button>
     </div>
     <div class="row justify-content-start mt-2">
         <button class="col btn btn-sm btn-outline-secondary" @onclick="SelectView">Select View</button>
@@ -128,9 +128,28 @@
             messageContent += student.FullName + "\n";
         }
 
+        messageContent += "Sent to ";
+        switch (relationSettings)
+        {
+            case Relation.OnlyStudent:
+                messageContent += "only students";
+                break;
+            case Relation.OnlyParents:
+                messageContent += "only parents";
+                break;
+            case Relation.Both:
+                messageContent += "both students and parents";
+                break;
+        }
+
         await HttpClient.PostAsJsonAsync(NavigationManager.BaseUri + "sentmessages", new SentMessage() { Contents = messageContent });
         
         NavigationManager.NavigateTo("/");
+    }
+
+    void SetRelationSettings(Relation relation)
+    {
+        relationSettings = relation;
     }
 
     void FilterOptions(FilterTypes filterTypes)
