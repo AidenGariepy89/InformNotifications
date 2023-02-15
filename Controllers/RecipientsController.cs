@@ -21,7 +21,7 @@ public class RecipientController : Controller
     {
         return (await _db.Recipients
                 .Include(r => r.Student)
-                //.Include(r => r.Parents)
+                .Include(r => r.Parents)
                 .ToListAsync())
             .OrderBy(r => r.RecipientId)
             .ToList();

@@ -25,50 +25,43 @@ public class InformNotificationsContext : DbContext
             .HasOne(p => p.Recipient)
             .WithMany(r => r.Parents)
             .HasForeignKey(p => p.RecipientId);
-
-        // modelBuilder.Entity<Recipient>().HasData(new Recipient { RecipientId = 1 });
-        // modelBuilder.Entity<Student>()
-        //     .HasData(new Student
-        //     {
-        //         RecipientId = 1,
-        //         StudentId = 1,
-        //         FirstName = "Aiden",
-        //         LastName = "Gariepy",
-        //         GraduationYear = "2023",
-        //         EmailAddress = "aidgar23@gcasda.org",
-        //         PhoneNumber = "7062638995"
-        //     });
-        // modelBuilder.Entity<Parent>()
-        //     .HasData(new Parent
-        //     {
-        //         RecipientId = 1,
-        //         ParentId = 1,
-        //         FirstName = "Serge",
-        //         LastName = "Gariepy",
-        //         EmailAddress = "sgariepy@gcasda.org",
-        //         PhoneNumber = "7062177138"
-        //     });
-        // modelBuilder.Entity<Parent>()
-        //     .HasData(new Parent
-        //     {
-        //         RecipientId = 1,
-        //         ParentId = 2,
-        //         FirstName = "LeAnn",
-        //         LastName = "Gariepy",
-        //         EmailAddress = "lgariepy@gcasda.org",
-        //         PhoneNumber = "7062177139"
-        //     });
         
+        DataSeeding(modelBuilder);
+    }
+
+    void DataSeeding(ModelBuilder modelBuilder)
+    {
         List<Student> students = SeedData.ReadFile();
 
         int i = 0;
+        int j = -1;
         foreach (var student in students)
         {
             i++;
+            j += 2;
 
             modelBuilder.Entity<Recipient>().HasData(new Recipient { RecipientId = i });
             student.RecipientId = i;
             modelBuilder.Entity<Student>().HasData(student);
+
+            modelBuilder.Entity<Parent>().HasData(new Parent
+            {
+                RecipientId = i,
+                ParentId = j,
+                FirstName = "Mother",
+                LastName = student.LastName,
+                EmailAddress = $"mother{student.LastName}@gmail.com",
+                PhoneNumber = "number of mom"
+            });
+            modelBuilder.Entity<Parent>().HasData(new Parent
+            {
+                RecipientId = i,
+                ParentId = j + 1,
+                FirstName = "Father",
+                LastName = student.LastName,
+                EmailAddress = $"father{student.LastName}@gmail.com",
+                PhoneNumber = "number of dad"
+            });
         }
     }
 }
