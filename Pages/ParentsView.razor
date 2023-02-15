@@ -1,0 +1,44 @@
+@page "/viewparents"
+@using InformNotifications.Models
+@inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
+
+<h1>Parents</h1>
+
+@if (invalidRequest)
+{
+    <div class="text-center text-danger lead mt-4">
+        Error loading students!
+    </div>
+}
+else if (parents!.Count == 0)
+{
+    <div class="text-center text-info lead mt-4">
+        No Parents have been added yet.
+    </div>
+}
+else
+{
+    @foreach (var parent in parents)
+    {
+        <div class="row">
+            <p>Name: @(parent.FullName), Id: @(parent.ParentId), Email: @(parent.EmailAddress), Phone: @(parent.PhoneNumber)</p>
+        </div>
+    }
+}
+
+@code
+{
+    List<Parent>? parents = new();
+    bool invalidRequest = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        parents = await HttpClient.GetFromJsonAsync<List<Parent>>(NavigationManager.BaseUri + "parents");
+        if (parents is not null)
+        {
+            invalidRequest = false;
+            parents = parents.OrderBy(p => p.LastName).ToList();
+        }
+    }
+}

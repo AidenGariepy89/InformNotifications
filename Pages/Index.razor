@@ -2,7 +2,6 @@
 @using InformNotifications.Models;
 @inject HttpClient HttpClient;
 @inject NavigationManager NavigationManager
-@inject IJSRuntime JSRuntime
 
 <PageTitle>Inform Notifications</PageTitle>
 
@@ -24,13 +23,13 @@
 
     @if (invalidRequest)
     {
-        <div class="text-center text-danger mt-4">
+        <div class="text-center text-danger lead mt-4">
             Error loading sent messages!
         </div>
     }
     else if (messages!.Count == 0)
     {
-        <div class="text-center lead mt-4">
+        <div class="text-center text-info lead mt-4">
             No Messages have been sent yet!
         </div>
     }
