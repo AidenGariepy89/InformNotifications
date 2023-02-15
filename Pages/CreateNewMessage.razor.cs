@@ -67,72 +67,72 @@ public partial class CreateNewMessage : ComponentBase
         }
     }
 
-    List<Student> GetRecipientsSorted()
+    List<Recipient> GetRecipientsSorted()
     {
         if (sortByName)
         {
-            return students!.Where(s => s.FullName.ToLower().Contains(searchQuery.ToLower())).OrderBy(s => s.LastName).ToList();
+            return recipients!.Where(r => r.Student.FullName.ToLower().Contains(searchQuery.ToLower())).OrderBy(r => r.Student.LastName).ToList();
         }
         if (sortByYear)
         {
-            return students!.Where(s => s.GraduationYear.ToLower().Contains(searchQuery.ToLower())).OrderBy(s => s.GraduationYear).ToList();
+            return recipients!.Where(r => r.Student.GraduationYear.ToLower().Contains(searchQuery.ToLower())).OrderBy(r => r.Student.GraduationYear).ToList();
         }
         if (sortByEmail)
         {
-            return students!.Where(s => s.EmailAddress.ToLower().Contains(searchQuery.ToLower())).OrderBy(s => s.EmailAddress).ToList();
+            return recipients!.Where(r => r.Student.EmailAddress.ToLower().Contains(searchQuery.ToLower())).OrderBy(r => r.Student.EmailAddress).ToList();
         }
         if (sortByNumber)
         {
-            return students!.Where(s => s.PhoneNumber.ToLower().Contains(searchQuery.ToLower())).OrderBy(s => s.PhoneNumber).ToList();
+            return recipients!.Where(r => r.Student.PhoneNumber.ToLower().Contains(searchQuery.ToLower())).OrderBy(r => r.Student.PhoneNumber).ToList();
         }
-        return students!;
+        return recipients!;
     }
 
-    void SelectionLogic(Student student)
+    void SelectionLogic(Recipient recipient)
     {
-        if (selectedStudents.Contains(student))
+        if (selectedRecipients.Contains(recipient))
         {
-            selectedStudents.Remove(student);
+            selectedRecipients.Remove(recipient);
         }
         else
         {
-            selectedStudents.Add(student);
+            selectedRecipients.Add(recipient);
         }
     }
 
-    bool IsSelected(Student student)
+    bool IsSelected(Recipient recipient)
     {
-        return selectedStudents.Contains(student);
+        return selectedRecipients.Contains(recipient);
     }
 
     void SelectView()
     {
-        foreach (var student in GetRecipientsSorted())
+        foreach (var recipient in GetRecipientsSorted())
         {
-            if (!selectedStudents.Contains(student))
+            if (!selectedRecipients.Contains(recipient))
             {
-                selectedStudents.Add(student);
+                selectedRecipients.Add(recipient);
             }
         }
     }
 
     void DeselectView()
     {
-        foreach (var student in GetRecipientsSorted())
+        foreach (var recipient in GetRecipientsSorted())
         {
-            selectedStudents.Remove(student);
+            selectedRecipients.Remove(recipient);
         }
     }
 
     void SelectAll()
     {
-        selectedStudents.Clear();
-        selectedStudents.AddRange(students!);
+        selectedRecipients.Clear();
+        selectedRecipients.AddRange(recipients!);
     }
 
     void DeselectAll()
     {
-        selectedStudents.Clear();
+        selectedRecipients.Clear();
     }
 
     #endregion

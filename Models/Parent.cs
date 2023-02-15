@@ -8,4 +8,7 @@ public class Parent
     public string FullName => FirstName + " " + LastName;
     public string EmailAddress { get; set; } = "";
     public string PhoneNumber { get; set; } = "";
+
+    public int RecipientId { get; set; }
+    public Recipient Recipient { get; set; }
 }

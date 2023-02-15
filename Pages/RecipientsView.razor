@@ -23,6 +23,11 @@ else
     {
         <div class="row">
             <p>Name: @(recipient.Student.FullName), Recipient Id: @(recipient.RecipientId)</p>
+            <p>Parents:</p>
+            @foreach (var parent in recipient.Parents)
+            {
+                <p>Name: @(parent.FullName)</p>
+            }
         </div>
     }
 }
@@ -38,7 +43,7 @@ else
         if (recipients is not null)
         {
             invalidRequest = false;
-            //recipients = recipients.OrderBy(s => s.Student.LastName).ToList();
+            recipients = recipients.OrderBy(s => s.Student.LastName).ToList();
         }
     }
 }

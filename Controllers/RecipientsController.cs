@@ -19,6 +19,11 @@ public class RecipientController : Controller
     [HttpGet]
     public async Task<ActionResult<List<Recipient>>> GetRecipients()
     {
-        return (await _db.Recipients.ToListAsync()).OrderBy(s => s.RecipientId).ToList();
+        return (await _db.Recipients
+                .Include(r => r.Student)
+                .Include(r => r.Parents)
+                .ToListAsync())
+            .OrderBy(r => r.RecipientId)
+            .ToList();
     }
 }
