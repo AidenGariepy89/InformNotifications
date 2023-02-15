@@ -1,0 +1,44 @@
+@page "/viewrecipients"
+@using InformNotifications.Models;
+@inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
+
+<h1>Recipients</h1>
+
+@if (invalidRequest)
+{
+    <div class="text-center text-danger lead mt-4">
+        Error loading Recipients!
+    </div>
+}
+else if (recipients!.Count == 0)
+{
+    <div class="text-center text-info lead mt-4">
+        No Recipients have been added yet.
+    </div>
+}
+else
+{
+    @foreach (var recipient in recipients)
+    {
+        <div class="row">
+            <p>Name: @(recipient.Student.FullName), Recipient Id: @(recipient.RecipientId)</p>
+        </div>
+    }
+}
+
+@code
+{
+    List<Recipient>? recipients = new();
+    bool invalidRequest = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        recipients = await HttpClient.GetFromJsonAsync<List<Recipient>>(NavigationManager.BaseUri + "recipients");
+        if (recipients is not null)
+        {
+            invalidRequest = false;
+            //recipients = recipients.OrderBy(s => s.Student.LastName).ToList();
+        }
+    }
+}

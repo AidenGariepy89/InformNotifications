@@ -7,6 +7,7 @@ public static class SeedData
 {
     public static void Initialize(InformNotificationsContext db)
     {
+        /*
         List<SentMessage> messages = new()
         {
             new SentMessage()
@@ -68,7 +69,24 @@ public static class SeedData
                 PhoneNumber = "5555555555"
             }
         };
-        db.Parents.AddRange(parents);
+        db.Parents.AddRange(parents);*/
+
+        Recipient recipient = new()
+        {
+            RecipientId = 1,
+            Student = new Student()
+            {
+                StudentId = 1,
+                FirstName = "Aiden",
+                LastName = "Gariepy",
+                GraduationYear = "2023",
+                EmailAddress = "aidgar23@gcasda.org",
+                PhoneNumber = "7062638995"
+            }
+        };
+
+        //db.Students.Add(aiden);
+        db.Recipients.Add(recipient);
 
         db.SaveChanges();
     }
