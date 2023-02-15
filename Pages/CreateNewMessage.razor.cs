@@ -20,6 +20,12 @@ public partial class CreateNewMessage : ComponentBase
         OnlyParents,
         Both
     }
+    enum DeliverProtocol
+    {
+        SMS,
+        Email,
+        Both
+    }
     
     #endregion
 
