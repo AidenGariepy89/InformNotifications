@@ -35,7 +35,7 @@ using (var scope = scopeFactory.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<NotificationsContext>();
     if (db.Database.EnsureCreated())
     {
-        
+        SeedData.Initialize(db);
     }
 }
 
