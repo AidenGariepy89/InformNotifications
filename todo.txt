@@ -1,0 +1,5 @@
+TODO
+
+- Refactor internal API
+- Make SentMessages contain a status that says who it was sent to, as lists are far too difficult :(
+
