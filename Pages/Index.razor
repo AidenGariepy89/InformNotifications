@@ -1,3 +1,24 @@
 ﻿@page "/"
+@using InformNotifications.Models
+@inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
 
-<h1>Hello, world!</h1>
+<h1>Welcome!</h1>
+
+<Test />
+
+<button type="submit" @onclick="HandleSubmit">Submit</button>
+
+@code
+{
+    async Task HandleSubmit()
+    {
+        var message = new SentMessage
+        {
+            Content = "This is a test message",
+            MessageInfo = "INFO"
+        };
+
+        var response = await HttpClient.PostAsJsonAsync<SentMessage>(NavigationManager.BaseUri + "messages", message);
+    }
+}

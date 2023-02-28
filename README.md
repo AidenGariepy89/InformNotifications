@@ -4,6 +4,8 @@ This is an app intended to push messages out to a group of users, specifically s
 
 TODO:
 
-- Continue working on SeedData.cs
-- Continue setting up API
-- Once API is completely functional, begin working on front end
+* Continue working on SeedData.cs
+* Continue setting up API
+- Ensure API is finished
+- Once API is completely functional, begin integrating authentication
+- Once authentication is functional, begin front end

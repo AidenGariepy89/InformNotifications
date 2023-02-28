@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "/workspaces/InformNotifications/InformNotifications.csproj": {}
+    "/Users/aiden/dev/Blazor/InformNotifications/InformNotifications.csproj": {}
   },
   "projects": {
-    "/workspaces/InformNotifications/InformNotifications.csproj": {
+    "/Users/aiden/dev/Blazor/InformNotifications/InformNotifications.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/workspaces/InformNotifications/InformNotifications.csproj",
+        "projectUniqueName": "/Users/aiden/dev/Blazor/InformNotifications/InformNotifications.csproj",
         "projectName": "InformNotifications",
-        "projectPath": "/workspaces/InformNotifications/InformNotifications.csproj",
-        "packagesPath": "/home/codespace/.nuget/packages/",
-        "outputPath": "/workspaces/InformNotifications/obj/",
+        "projectPath": "/Users/aiden/dev/Blazor/InformNotifications/InformNotifications.csproj",
+        "packagesPath": "/Users/aiden/.nuget/packages/",
+        "outputPath": "/Users/aiden/dev/Blazor/InformNotifications/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/codespace/.nuget/NuGet/NuGet.Config"
+          "/Users/aiden/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -70,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/dotnet/7.0.200/sdk/7.0.200/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.101/RuntimeIdentifierGraph.json"
         }
       }
     }

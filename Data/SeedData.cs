@@ -30,6 +30,15 @@ public static class SeedData
         };
 
         db.Students.Add(timmy);
+
+        var message = new SentMessage
+        {
+            Content = "aosdifjoaisdjfoiasdjfoiajsdfoiadsjf",
+            MessageInfo = "Sent to All"
+        };
+        message.TimeDelivered = DateTime.Now;
+        db.SentMessages.Add(message);
+
         db.SaveChanges();
     }
 }
