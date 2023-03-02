@@ -31,7 +31,11 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor()
     .AddMicrosoftIdentityConsentHandler();
-builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddHttpClient();
+builder.Services.AddSqlite<NotificationsContext>("Data Source=notifications.db");
+builder.Services.AddControllersWithViews()
+    .AddNewtonsoftJson(options =>
+        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 var app = builder.Build();
 
@@ -52,5 +56,16 @@ app.UseRouting();
 app.MapControllers();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+app.MapControllerRoute("default", "{controllerHome}/{action=Index}/{id?}");
+
+var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+using (var scope = scopeFactory.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<NotificationsContext>();
+    if (db.Database.EnsureCreated())
+    {
+        SeedData.Initialize(db);
+    }
+}
 
 app.Run();
