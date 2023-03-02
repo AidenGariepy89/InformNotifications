@@ -39,17 +39,31 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[7.0.3, )"
+              "version": "[7.0.1, )",
+              "noWarn": [
+                "NU1605"
+              ]
             },
-            "Microsoft.EntityFrameworkCore": {
+            "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
               "target": "Package",
-              "version": "[7.0.3, )"
+              "version": "[7.0.1, )",
+              "noWarn": [
+                "NU1605"
+              ]
             },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
+            "Microsoft.Identity.Web": {
               "target": "Package",
-              "version": "[7.0.3, )"
+              "version": "[1.16.0, )"
+            },
+            "Microsoft.Identity.Web.MicrosoftGraph": {
+              "target": "Package",
+              "version": "[1.16.0, )"
+            },
+            "Microsoft.Identity.Web.UI": {
+              "target": "Package",
+              "version": "[1.16.0, )"
             }
           },
           "imports": [
