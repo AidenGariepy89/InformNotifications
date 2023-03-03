@@ -1,4 +1,7 @@
 ﻿@page "/"
+@using InformNotifications.Models
+@inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
 
 <PageTitle>Index</PageTitle>
 
@@ -7,3 +10,39 @@
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+@if (okResponse)
+{
+    @foreach (var message in messages!)
+    {
+        <h2>@message.Id</h2>
+        <h3>@message.TimeDelivered</h3>
+        <p>@message.Content</p>
+        <p>@message.MessageInfo</p>
+        <button class="btn btn-outline-danger" @onclick="() => DeleteMessage(message.Id)">Delete Message</button>
+    }
+}
+else
+{
+    <p>Loading...</p>
+}
+
+@code
+{
+    List<SentMessage>? messages = new List<SentMessage>();
+    bool okResponse = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.Error.WriteLine(NavigationManager.BaseUri + "messages");
+        messages = await HttpClient.GetFromJsonAsync<List<SentMessage>>("https://localhost:7182/messages");
+        if (messages is not null)
+            okResponse = true;
+    }
+
+    async Task DeleteMessage(int messageId)
+    {
+        await HttpClient.DeleteFromJsonAsync<SentMessage>($"{NavigationManager.BaseUri}messages/{messageId}");
+        NavigationManager.NavigateTo("/");
+    }
+}

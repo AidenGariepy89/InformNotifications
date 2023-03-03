@@ -4,6 +4,12 @@ namespace InformNotifications.Data;
 
 public static class SeedData
 {
+    public static void ClearMessages(NotificationsContext db)
+    {
+        db.SentMessages.RemoveRange(db.SentMessages.ToList());
+        db.SaveChanges();
+    }
+
     public static void Initialize(NotificationsContext db)
     {
         var timmy = new Student

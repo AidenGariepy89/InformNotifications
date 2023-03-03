@@ -41,4 +41,20 @@ public class MessageController : ControllerBase
 
         return message.Id;
     }
+
+    [HttpDelete("{messageId}")]
+    public async Task<ActionResult<int>> DeleteMessage(int messageId)
+    {
+        var message = await _db.SentMessages
+            .Where(m => m.Id == messageId)
+            .SingleOrDefaultAsync();
+        if (message is null)
+        {
+            return -1;
+        }
+        _db.Remove(message);
+        await _db.SaveChangesAsync();
+
+        return message.Id;
+    }
 }
